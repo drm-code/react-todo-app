@@ -15,6 +15,7 @@ class ModalComponent extends React.Component {
     super()
     this.toggle = this.toggle.bind(this)
     this.onChange = this.onChange.bind(this)
+    this.onKeyPress = this.onKeyPress.bind(this)
     this.save = this.save.bind(this)
     this.state = {
       isOpen: false,
@@ -42,12 +43,21 @@ class ModalComponent extends React.Component {
     })
   }
 
-  save() {
-    const payload = {
-      ...this.props.current,
-      text: this.state.text
+  onKeyPress(e) {
+    if (e.charCode === 13) {
+      e.preventDefault()
+      this.save()
     }
-    this.props.saveTodo(payload)
+  }
+
+  save() {
+    if (this.state.text.length > 0) {
+      const payload = {
+        ...this.props.current,
+        text: this.state.text
+      }
+      this.props.saveTodo(payload)
+    }
   }
 
   render() {
@@ -58,7 +68,7 @@ class ModalComponent extends React.Component {
         autoFocus={false}
       >
         <ModalHeader toggle={() => this.props.hideModal()}>
-          {`${this.props.current.hasOwnProperty('text') ? 'Editing ' : 'Deleting '} TODO`}
+          {`${this.props.current.hasOwnProperty('text') ? 'Editing ' : 'Deleting '} TO-DO`}
         </ModalHeader>
         <ModalBody>
           {(this.props.current.text &&
@@ -69,19 +79,35 @@ class ModalComponent extends React.Component {
                   type="text"
                   value={this.state.text}
                   onChange={this.onChange}
+                  onKeyPress={this.onKeyPress}
                 />
               </FormGroup>
             </Form>) ||
-            'Are you sure to delete the TODO?'
+            'Are you sure to delete the TO-DO?'
           }
         </ModalBody>
         <ModalFooter>
           {(this.props.current.hasOwnProperty('text') && (
-            <Button onClick={this.save}>Save</Button>
+            <Button
+              onClick={this.save}
+              color="primary"
+            >
+              Save
+            </Button>
           )) ||
             <div>
-              <Button onClick={() => this.props.deleteTodo(this.props.current.id)}>Yes</Button>{' '}
-              <Button onClick={this.props.hideModal}>No</Button>
+              <Button
+                onClick={() => this.props.deleteTodo(this.props.current.id)}
+                color="danger"
+              >
+                Yes
+              </Button>{' '}
+              <Button
+                onClick={this.props.hideModal}
+                color="link"
+              >
+                No
+              </Button>
             </div>
           }
         </ModalFooter>

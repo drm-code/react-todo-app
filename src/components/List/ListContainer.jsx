@@ -17,13 +17,14 @@ class ListContainer extends React.Component {
 }
 
 const mapStateToProps = ({ todo }) => ({
-  todos: todo.todos
+  todos: todo.todos,
+  incompleted: todo.incompleted
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  editTodo: (id) => dispatch(editTodo(id)),
-  setDone: (id) => dispatch(setDone(id)),
-  confirmDelete: (id) => dispatch(confirmDelete(id))
+  editTodo: id => dispatch(editTodo(id)),
+  setDone: id => dispatch(setDone(id)),
+  confirmDelete: id => dispatch(confirmDelete(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListContainer)

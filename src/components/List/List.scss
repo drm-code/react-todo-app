@@ -1,0 +1,42 @@
+.fa {
+  position: relative;
+  top: 6px;
+  margin-right: 15px;
+}
+
+.btn-delete {
+  position: absolute;
+  right: 20px;
+}
+
+.pending,
+.no-pending {
+  font-style: italic;
+}
+
+.pending {
+  color: #A1310D;
+}
+
+.no-pending {
+  color: #28a745;
+}
+
+.delete {
+  position: absolute;
+  top: 15px;
+  right: 0px;
+  color: #dc3545;
+  cursor: pointer;
+}
+
+.list-group-item {
+  span:nth-child(3) {
+    opacity: 0;
+  }
+  &:hover {
+    span:nth-child(3) {
+      opacity: 1;
+    }
+  }
+}

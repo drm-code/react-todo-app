@@ -5,11 +5,13 @@ import {
   Input
 } from 'reactstrap'
 
+import './Input.css'
+
 class InputComponent extends React.Component {
   constructor() {
     super()
-    this.onKeyPress = this.onKeyPress.bind(this)
     this.onChange = this.onChange.bind(this)
+    this.onKeyPress = this.onKeyPress.bind(this)
     this.state = {
       text: ''
     }
@@ -23,8 +25,13 @@ class InputComponent extends React.Component {
 
   onKeyPress(e) {
     if (e.charCode === 13) {
-      e.preventDefault()
-      this.props.addTodo(this.state.text)
+      if (this.state.text.length > 0) {
+        e.preventDefault()
+        this.props.addTodo(this.state.text)
+        this.setState({ text: '' })
+      } else {
+        e.preventDefault()
+      }
     }
   }
 
@@ -35,6 +42,9 @@ class InputComponent extends React.Component {
           <Input
             autoFocus
             type="text"
+            maxLength="40"
+            placeholder="Type something you need TO-DO"
+            className="main-input"
             value={this.state.text}
             onChange={this.onChange}
             onKeyPress={this.onKeyPress}

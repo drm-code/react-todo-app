@@ -88,9 +88,10 @@ export const deleteTodo = (id) => (dispatch) => {
 export const saveTodo = (payload) => (dispatch) => {
   const todos = JSON.parse(localStorage.getItem('react-todo.todos'))
   const index = todos.map(t => t.id).indexOf(payload.id)
+  const incompleted = todos.reduce((a, b) => !b.done ? a + 1 : a, 0)
 
   todos[index] = { ...payload }
   localStorage.setItem('react-todo.todos', JSON.stringify(todos))
-  dispatch(setTodos({ todos }))
+  dispatch(setTodos({ todos, incompleted }))
   dispatch(hideModal())
 }
