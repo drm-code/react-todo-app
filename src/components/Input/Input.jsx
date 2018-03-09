@@ -33,17 +33,13 @@ class InputComponent extends React.Component {
       <Form>
         <FormGroup>
           <Input
+            autoFocus
             type="text"
             value={this.state.text}
             onChange={this.onChange}
             onKeyPress={this.onKeyPress}
           />
         </FormGroup>
-        {this.props.todos && this.props.todos.map(i => (
-          <div key={Math.random()}>
-            {i.text}
-          </div>
-        ))}
       </Form>
     )
   }

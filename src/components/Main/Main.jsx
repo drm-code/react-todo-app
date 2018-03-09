@@ -3,10 +3,12 @@ import { connect } from 'react-redux'
 import {
   Container,
   Row,
-  Col
+  Col,
 } from 'reactstrap'
 
 import Input from '../Input'
+import Modal from '../Modal'
+import List from '../List'
 import { getTodos } from '../../actions'
 
 class Main extends React.Component {
@@ -24,8 +26,10 @@ class Main extends React.Component {
               size: 8,
               offset: 2
             }}
-            >
+          >
+            <Modal />
             <Input />
+            <List />
           </Col>
         </Row>
       </Container>

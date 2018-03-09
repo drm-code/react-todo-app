@@ -14,7 +14,7 @@ export const addTodo = (text) => (dispatch) => {
       done: false
     }
     let todos = JSON.parse(localStorage.getItem('react-todo.todos') || '[]')
-    
+
     todos.push(payload)
     localStorage.setItem('react-todo.todos', JSON.stringify(todos))
     dispatch(_addTodo(payload))
@@ -34,4 +34,8 @@ export const getTodos = () => (dispatch) => {
 const setTodos = (payload) => ({
   type: types.SET_TODOS,
   payload
+})
+
+export const showModal = () => ({
+  type: types.SHOW_MODAL
 })

@@ -12,12 +12,10 @@ class InputContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    incompleted: state.todo.incompleted,
-    todos: state.todo.todos
-  }
-}
+const mapStateToProps = ({ todo }) => ({
+  incompleted: todo.incompleted,
+  todos: todo.todos
+})
 
 const mapDispatchToProps = (dispatch) => ({
   addTodo: (text) => dispatch(addTodo(text))

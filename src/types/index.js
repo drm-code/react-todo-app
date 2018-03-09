@@ -1,3 +1,5 @@
 export const ADD_TODO = 'ADD_TODO'
 export const GET_TODOS = 'GET_TODOS'
 export const SET_TODOS = 'SET_TODOS'
+export const SHOW_MODAL = 'SHOW_MODAL'
+export const HIDE_MODAL = 'HIDE_MODAL'

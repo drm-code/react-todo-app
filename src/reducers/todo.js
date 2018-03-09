@@ -2,7 +2,8 @@ import * as types from '../types'
 
 const initialState = {
   todos: [],
-  incompleted: 0
+  incompleted: 0,
+  current: {}
 }
 
 export default (state = initialState, action) => {
