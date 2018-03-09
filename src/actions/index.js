@@ -51,3 +51,26 @@ const setTodo = (payload) => ({
   type: types.SET_TODO,
   payload
 })
+
+export const setDone = (id) => (dispatch) => {
+  let todos = JSON.parse(localStorage.getItem('react-todo.todos'))
+  const index = todos.map(t => t.id).indexOf(id)
+
+  todos[index].done = !todos[index].done
+  const incompleted = todos.reduce((a, b) => !b.done ? a + 1 : a, 0)
+
+  localStorage.setItem('react-todo.todos', JSON.stringify(todos))
+  dispatch(setTodos({ todos, incompleted }))
+}
+
+export const deleteTodo = (id) => (dispatch) => {
+  let todos = JSON.parse(localStorage.getItem('react-todo.todos'))
+  const index = todos.map(t => t.id).indexOf(id)
+
+  delete todos[index]
+  todos = todos.filter(t => t !== null)
+  const incompleted = todos.reduce((a, b) => !b.done ? a + 1 : a, 0)
+
+  localStorage.setItem('react-todo.todos', JSON.stringify(todos))
+  dispatch(setTodos({ todos, incompleted }))
+}

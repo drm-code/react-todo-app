@@ -2,7 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import List from './List'
-import { editTodo } from '../../actions'
+import {
+  editTodo,
+  setDone,
+  deleteTodo
+} from '../../actions'
 
 class ListContainer extends React.Component {
   render() {
@@ -17,7 +21,9 @@ const mapStateToProps = ({ todo }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  editTodo: (id) => dispatch(editTodo(id))
+  editTodo: (id) => dispatch(editTodo(id)),
+  setDone: (id) => dispatch(setDone(id)),
+  deleteTodo: (id) => dispatch(deleteTodo(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListContainer)

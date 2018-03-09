@@ -12,9 +12,13 @@ class List extends React.Component {
       <ListGroup>
         {this.props.todos && this.props.todos.map(todo => (
           <ListGroupItem key={Math.random()}>
-            <FontAwesome name="check" style={{ color: 'green' }} />
+            <FontAwesome
+              name="check-circle"
+              size="2x"
+              onClick={() => this.props.setDone(todo.id)}
+            />
             <a onClick={() => this.props.editTodo(todo.id)}>{todo.text}</a>
-            <Button>Delete</Button>
+            <Button onClick={() => this.props.deleteTodo(todo.id)}>Delete</Button>
           </ListGroupItem>
         ))}
       </ListGroup>

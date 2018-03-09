@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         todos: action.payload.todos,
-        incompleted: action.payload.incompleted
+        incompleted: action.payload.incompleted || state.incompleted
       }
     }
     case types.SET_TODO: {

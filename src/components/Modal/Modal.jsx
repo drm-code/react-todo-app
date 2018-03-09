@@ -29,7 +29,6 @@ class ModalComponent extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <Modal
         isOpen={this.state.isOpen}
