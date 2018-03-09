@@ -5,7 +5,7 @@ import List from './List'
 import {
   editTodo,
   setDone,
-  deleteTodo
+  confirmDelete
 } from '../../actions'
 
 class ListContainer extends React.Component {
@@ -23,7 +23,7 @@ const mapStateToProps = ({ todo }) => ({
 const mapDispatchToProps = (dispatch) => ({
   editTodo: (id) => dispatch(editTodo(id)),
   setDone: (id) => dispatch(setDone(id)),
-  deleteTodo: (id) => dispatch(deleteTodo(id))
+  confirmDelete: (id) => dispatch(confirmDelete(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListContainer)

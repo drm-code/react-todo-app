@@ -18,7 +18,7 @@ class List extends React.Component {
               onClick={() => this.props.setDone(todo.id)}
             />
             <a onClick={() => this.props.editTodo(todo.id)}>{todo.text}</a>
-            <Button onClick={() => this.props.deleteTodo(todo.id)}>Delete</Button>
+            <Button onClick={() => this.props.confirmDelete(todo.id)}>Delete</Button>
           </ListGroupItem>
         ))}
       </ListGroup>

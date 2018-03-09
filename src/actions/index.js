@@ -40,6 +40,10 @@ export const showModal = () => ({
   type: types.SHOW_MODAL
 })
 
+export const hideModal = () => ({
+  type: types.HIDE_MODAL
+})
+
 export const editTodo = (id) => (dispatch) => {
   const todo = JSON.parse(localStorage.getItem('react-todo.todos')).find(t => t.id === id)
 
@@ -63,6 +67,11 @@ export const setDone = (id) => (dispatch) => {
   dispatch(setTodos({ todos, incompleted }))
 }
 
+export const confirmDelete = (id) => (dispatch) => {
+  dispatch(setTodo({ id: id }))
+  dispatch(showModal())
+}
+
 export const deleteTodo = (id) => (dispatch) => {
   let todos = JSON.parse(localStorage.getItem('react-todo.todos'))
   const index = todos.map(t => t.id).indexOf(id)
@@ -73,4 +82,15 @@ export const deleteTodo = (id) => (dispatch) => {
 
   localStorage.setItem('react-todo.todos', JSON.stringify(todos))
   dispatch(setTodos({ todos, incompleted }))
+  dispatch(hideModal())
+}
+
+export const saveTodo = (payload) => (dispatch) => {
+  const todos = JSON.parse(localStorage.getItem('react-todo.todos'))
+  const index = todos.map(t => t.id).indexOf(payload.id)
+
+  todos[index] = { ...payload }
+  localStorage.setItem('react-todo.todos', JSON.stringify(todos))
+  dispatch(setTodos({ todos }))
+  dispatch(hideModal())
 }
