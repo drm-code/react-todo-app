@@ -39,3 +39,15 @@ const setTodos = (payload) => ({
 export const showModal = () => ({
   type: types.SHOW_MODAL
 })
+
+export const editTodo = (id) => (dispatch) => {
+  const todo = JSON.parse(localStorage.getItem('react-todo.todos')).find(t => t.id === id)
+
+  dispatch(setTodo(todo))
+  dispatch(showModal())
+}
+
+const setTodo = (payload) => ({
+  type: types.SET_TODO,
+  payload
+})

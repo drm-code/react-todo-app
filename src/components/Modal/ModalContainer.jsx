@@ -11,10 +11,9 @@ class ModalContainer extends React.Component {
   }
 }
 
-const mapStateToProps = ({ modal }) => ({
-  type: modal.type,
-  todoId: modal.todoId,
-  isOpen: modal.isOpen
+const mapStateToProps = ({ modal, todo }) => ({
+  isOpen: modal.isOpen,
+  current: todo.current
 })
 
 const mapDispatchToProps = (dispatch) => ({

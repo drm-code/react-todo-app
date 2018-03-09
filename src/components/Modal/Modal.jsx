@@ -8,13 +8,46 @@ import {
 } from 'reactstrap'
 
 class ModalComponent extends React.Component {
+  constructor() {
+    super()
+    this.toggle = this.toggle.bind(this)
+    this.state = {
+      isOpen: false
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      isOpen: newProps.isOpen
+    })
+  }
+
+  toggle() {
+    this.setState({
+      isOpen: false
+    })
+  }
+
   render() {
+    console.log(this.props);
     return (
-      <Modal isOpen={this.props.isOpen}>
-        <ModalHeader>Title</ModalHeader>
-        <ModalBody>Body</ModalBody>
+      <Modal
+        isOpen={this.state.isOpen}
+        toggle={this.toggle}
+      >
+        <ModalHeader toggle={this.toggle}>
+          {`${this.props.current.hasOwnProperty('id') ? 'Editing ' : 'Deleting '} TODO`}
+        </ModalHeader>
+        <ModalBody>{this.props.current.text}</ModalBody>
         <ModalFooter>
-          <Button>Action</Button>
+          {(this.props.current.hasOwnProperty('text') && (
+            <Button>Save</Button>
+          )) ||
+            <div>
+              <Button>Delete</Button>
+              <Button>Cancel</Button>
+            </div>
+          }
         </ModalFooter>
       </Modal>
     )

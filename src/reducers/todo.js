@@ -22,6 +22,12 @@ export default (state = initialState, action) => {
         incompleted: action.payload.incompleted
       }
     }
+    case types.SET_TODO: {
+      return {
+        ...state,
+        current: { ...action.payload }
+      }
+    }
     default: {
       return state
     }
